@@ -7,6 +7,9 @@ import yapsy.IPlugin
 import hempl
 import tunnercore
 
+# TODO: Render specific rows
+# TODO: Render specific matches (one file)
+# TODO: Multi source merge render
 
 class Render(tunnercore.TunnerCommand):
     cmd_type = "render"
@@ -34,10 +37,10 @@ class Render(tunnercore.TunnerCommand):
 
         rows_render = []
 
-        self.log(logging.DEBUG, f"Rows for render: {len(data[input_rows_key])}")
-        self.log(logging.DEBUG, f"Interprets: {len(data[interprets_key])}")
+        # self.log(logging.DEBUG, f"Rows for render: {len(data[input_rows_key])}")
+        # self.log(logging.DEBUG, f"Interprets: {len(data[interprets_key])}")
         for row in data[input_rows_key]:
-            self.log(logging.DEBUG, f"Rendering row {row.text}")
+            # self.log(logging.DEBUG, f"Rendering row {row.text}")
             rows_render.append(RowRender(row, match_color, data[interprets_key]))
 
         table = hempl.TableRender(
@@ -55,8 +58,9 @@ class Render(tunnercore.TunnerCommand):
 
         renders.append(table)
 
-        html = hempl.render(template, renders)
+        html = hempl.render(template, renders, "Fake title")
         hempl.save(html, output_file_template)
+        self.log(logging.DEBUG, f"Render: {output_file_template}")
 
 
 class RowRender:

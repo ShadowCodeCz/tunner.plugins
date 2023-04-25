@@ -31,7 +31,7 @@ class ReParser(tunnercore.TunnerCommand):
 
         matches = parser.parse(data[input_key], data[re_key])
 
-        for m in matches:
-            self.log(logging.DEBUG, f"text={m.text}, start.line={m.range.line.start}, end.line={m.range.line.end}")
+        # for m in matches:
+        #     self.log(logging.DEBUG, f"text={m.text}, start.line={m.range.line.start}, end.line={m.range.line.end}")
 
         data[output_key] += matches
